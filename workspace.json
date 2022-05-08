@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "auth-rest-api": "apps/auth-rest-api",
+    "core-graphql-api": "apps/core-graphql-api"
+  }
 }

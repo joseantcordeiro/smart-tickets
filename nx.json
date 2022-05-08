@@ -4,7 +4,7 @@
     "defaultBase": "main"
   },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nrwl/node"
   },
   "implicitDependencies": {
     "package.json": {
@@ -15,14 +15,10 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "nx/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "OTlmNjE0NDYtODAwNy00NTlmLTk1MzktYTgzN2Y1MDcwODYyfHJlYWQtd3JpdGU="
       }
     }
   },
@@ -33,5 +29,6 @@
         "projects": "dependencies"
       }
     ]
-  }
+  },
+  "defaultProject": "auth-rest-api"
 }
