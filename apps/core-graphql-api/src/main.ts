@@ -1,1 +1,3 @@
-console.log('Hello World!');
+import startApolloServer from './app/app';
+
+startApolloServer();
