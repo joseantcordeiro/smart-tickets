@@ -21,6 +21,16 @@ export const typeDefs = gql`
     MANAGE_EVENTS
   }
 
+  scalar Upload
+
+  type FileUploadResponse {
+    ETag: String!
+    Location: String!
+    key: String!
+    Key: String!
+    Bucket: String!
+  }
+
   type Country @exclude(operations: [CREATE, READ, UPDATE, DELETE]) {
     iso_2: String @unique(constraintName: "unique_iso_2")
     iso_3: String
@@ -197,6 +207,14 @@ export const typeDefs = gql`
         RETURN p
         """)
         @auth(rules: [{ isAuthenticated: true }])
+  }
+
+  type Query {
+    otherFields: Boolean!
+  }
+
+  type Mutation {
+    fileUpload(file: Upload!): FileUploadResponse!
   }
 
   type Mutation {

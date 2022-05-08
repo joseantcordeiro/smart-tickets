@@ -6,6 +6,7 @@ import { WebSocketServer } from "ws";
 import { useServer } from "graphql-ws/lib/use/ws";
 import { BaseRedisCache } from 'apollo-server-cache-redis';
 import Redis from 'ioredis';
+import { graphqlUploadExpress } from "graphql-upload";
 import { Neo4jGraphQL } from "@neo4j/graphql";
 import neo4j from "neo4j-driver";
 import { Neo4jGraphQLAuthJWKSPlugin } from "@neo4j/graphql-plugin-auth";
@@ -45,6 +46,8 @@ async function startApolloServer() {
   const serverCleanup = useServer({
     schema
   }, wsServer);
+
+  app.use(graphqlUploadExpress());
 
   // Same ApolloServer initialization as before, plus the drain plugin.
 
@@ -89,6 +92,7 @@ async function startApolloServer() {
       GraphqlLoggerPlugin,
       ApolloServerPluginInlineTrace,
 		],
+    csrfPrevention: true,
 	});
 
   // More required logic for integrating with Express
