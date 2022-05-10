@@ -1,0 +1,20 @@
+role,description
+MANAGE_USERS,Access to customers data
+MANAGE_STAFF,Access to staff users data
+MANAGE_APPS,Manage apps
+MANAGE_CHANNELS,Manage channels
+MANAGE_DISCOUNTS,Manage discounts
+MANAGE_PLUGINS,Manage plugins
+MANAGE_GIFT_CARD,Manage gift cards
+MANAGE_MENUS,Manage the structure of menus
+MANAGE_ORDERS,Access to orders data
+MANAGE_PAGES,Manage pages
+MANAGE_PAGE_TYPES_AND_ATTRIBUTES,Manage pages types and attributes
+HANDLE_PAYMENTS,Handle payments
+MANAGE_PRODUCTS,Manage products
+MANAGE_PRODUCT_TYPES_AND_ATTRIBUTES,Manage product types and attributes
+MANAGE_SHIPPING,Manage shipping
+MANAGE_SETTINGS,Manage shop settings
+MANAGE_TRANSLATIONS,Manage translations
+MANAGE_CHECKOUTS,Manage checkout
+HANDLE_CHECKOUTS,Handle checkouts

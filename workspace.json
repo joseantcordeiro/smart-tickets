@@ -1,7 +1,10 @@
 {
   "version": 2,
   "projects": {
+    "@smart-tickets/api-utils": "libs/api-utils",
     "auth-rest-api": "apps/auth-rest-api",
-    "core-graphql-api": "apps/core-graphql-api"
+    "core-graphql-api": "apps/core-graphql-api",
+    "frontend-admin": "apps/frontend-admin",
+    "frontend-admin-e2e": "apps/frontend-admin-e2e"
   }
 }

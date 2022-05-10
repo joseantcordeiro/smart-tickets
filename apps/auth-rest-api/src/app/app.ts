@@ -104,7 +104,7 @@ supertokens.init({
 
 	app.setErrorHandler(errorHandler());
 
-	app.get("/jwt", {
+	app.get("/auth/jwt", {
     preHandler: verifySession({ sessionRequired: false }),
 		}, (req: SessionRequest, res) => {
 				if (req.session !== undefined) {

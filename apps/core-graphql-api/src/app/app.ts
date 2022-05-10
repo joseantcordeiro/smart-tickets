@@ -72,10 +72,10 @@ async function startApolloServer() {
     },*/
     cache: new BaseRedisCache({
       client: new Redis({
-        host: String(process.env.REDIS_HOST),
-        port: Number(process.env.REDIS_PORT),
-        password: String(process.env.REDIS_PASSWORD),
-        db: Number(process.env.REDIS_DB),
+        host: String(process.env.CACHE_HOST),
+        port: Number(process.env.CACHE_PORT),
+        password: String(process.env.CACHE_PASSWORD),
+        db: Number(process.env.CACHE_DB),
       }),
     }),
 		plugins: [

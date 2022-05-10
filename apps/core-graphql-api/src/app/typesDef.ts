@@ -23,7 +23,7 @@ export const typeDefs = gql`
 
   scalar Upload
 
-  type FileUploadResponse {
+  type FileUploadResponse @exclude(operations: [CREATE, READ, UPDATE, DELETE]) {
     ETag: String!
     Location: String!
     key: String!

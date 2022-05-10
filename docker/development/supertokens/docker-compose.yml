@@ -1,0 +1,42 @@
+version: '3'
+services:
+  supertokens:
+    image: registry.supertokens.io/supertokens/supertokens-postgresql
+    hostname: supertokens
+    container_name: supertokens
+    restart: always
+    ports:
+      - "3567:3567"
+    volumes:
+      - supertokens-logs:/home/logsFolder
+    environment:
+      BASE_PATH: /tokens
+      DISABLE_TELEMETRY: "true"
+      API_KEYS: sjnNfRVaBPXbYwJ00jAbE280K5wWR8byekTdx7mRgxZSv430qwiE5Poh2bCKeyjD
+      POSTGRESQL_USER: postgres
+      POSTGRESQL_PASSWORD: supertokens
+      POSTGRESQL_HOST: db
+      POSTGRESQL_PORT: 5432
+      POSTGRESQL_DATABASE_NAME: postgres
+      POSTGRESQL_TABLE_NAMES_PREFIX: auth
+      POSTGRESQL_TABLE_SCHEMA: public
+      ERROR_LOG_PATH: "/home/logsFolder/error.log"
+      INFO_LOG_PATH: "/home/logsFolder/info.log"
+
+  postgres:
+    image: postgres:latest
+    container_name: db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=supertokens
+    #ports:
+    #  - '5432:5432'
+    volumes:
+      - supertokens-data:/var/lib/postgresql/data
+
+volumes:
+  supertokens-data:
+    driver: local
+  supertokens-logs:
+    driver: local
