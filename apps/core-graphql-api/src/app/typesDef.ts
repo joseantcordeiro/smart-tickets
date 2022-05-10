@@ -45,9 +45,6 @@ export const typeDefs = gql`
   type Language @exclude(operations: [CREATE, READ, UPDATE, DELETE]) {
     alpha_2: String @unique(constraintName: "unique_alpha_2")
     name: String
-    persons: [Person!]! @relationship(type: "HAS_DEFAULT_LANGUAGE", direction: IN)
-    organizations: [Organization!]! @relationship(type: "HAS_DEFAULT_LANGUAGE", direction: IN)
-    channels: [Channel!]! @relationship(type: "HAS_DEFAULT_LANGUAGE", direction: IN)
   }
 
   type Currency @exclude(operations: [CREATE, READ, UPDATE, DELETE]) {
@@ -157,6 +154,15 @@ export const typeDefs = gql`
         RETURN m
         """)
         @auth(rules: [{ isAuthenticated: true }])
+  }
+
+  type Query {
+    getLanguages: [Language!]
+        @cypher(statement: """
+        MATCH (l:Language)
+        RETURN l
+        """)
+        @auth(rules: [{ allowUnauthenticated: true }])
   }
 
   type Mutation {

@@ -1,4 +1,4 @@
-import { getMinioDomain } from "../app";
+import { getMinioDomain } from "../common/utils";
 
 interface IProps {
 	logoutClicked: any;

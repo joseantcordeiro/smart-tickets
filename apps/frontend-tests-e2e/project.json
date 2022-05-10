@@ -1,0 +1,27 @@
+{
+  "sourceRoot": "apps/frontend-tests-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/frontend-tests-e2e/cypress.json",
+        "devServerTarget": "frontend-tests:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "frontend-tests:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/frontend-tests-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["frontend-tests"]
+}

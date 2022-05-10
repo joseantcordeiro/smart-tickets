@@ -1,60 +1,39 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
-import SuperTokens from "supertokens-auth-react";
-import EmailPassword, { EmailPasswordAuth } from "supertokens-auth-react/recipe/emailpassword";
-import Session from "supertokens-auth-react/recipe/session";
-import { useRoutes } from 'hookrouter';
-import routes from "./common/router";
+import React from "react";
+import { useSessionContext } from "supertokens-auth-react/recipe/session";
+import { ApolloClient, InMemoryCache, ApolloProvider, DefaultOptions } from "@apollo/client";
+import AppRoutes from "./common/routes";
+import { getGraphqlApi } from "./common/utils";
 import Footer from "./common/footer";
-import Nav from "./common/nav";
 
-export function getAuthDomain(): string {
-  const authPort = 4001;
-  return `http://localhost:${authPort}`;
-}
-
-export function getWebsiteDomain(): string {
-  const websitePort = 4200;
-  return `http://localhost:${websitePort}`;
-}
-
-export function getGraphqlApi(): string {
-const graphqlPort = 4000;
-return `http://localhost:${graphqlPort}`;
-}
-
-export function getMinioDomain(): string {
-const minioPort = 9000;
-return `http://192.168.1.95:${minioPort}`;
-}
-
-SuperTokens.init({
-  appInfo: {
-      appName: "Smart Tickets",
-      apiDomain: getAuthDomain(),
-      websiteDomain: getWebsiteDomain(),
-      apiBasePath: "/auth",
-      websiteBasePath: "/auth",
+const defaultOptions: DefaultOptions = {
+  watchQuery: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "ignore",
   },
-  recipeList: [
-      EmailPassword.init(),
-      Session.init()
-  ]
-});
+  query: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "all",
+  },
+};
 
-export function App() {
-  const routeResult = useRoutes(routes);
-
-  if (SuperTokens.canHandleRoute()) {
-    // This renders the login UI on the /auth route
-    return SuperTokens.getRoutingComponent()
-  }
+function App() {
+  const { accessTokenPayload } = useSessionContext();
+  const client = new ApolloClient({
+    uri: getGraphqlApi(),
+    cache: new InMemoryCache(),
+    headers: {
+      Authorization: `Bearer ${accessTokenPayload?.jwt}`,
+      "Content-Type": "application/json",
+    },
+    defaultOptions,
+  });
   return (
-    <EmailPasswordAuth>
-      <Nav />
-      {routeResult}
+    <div className="App">
+      <ApolloProvider client={client}>
+        <AppRoutes />
+      </ApolloProvider>
       <Footer />
-    </EmailPasswordAuth>
+    </div>
   );
 }
 

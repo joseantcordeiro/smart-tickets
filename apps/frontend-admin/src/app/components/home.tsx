@@ -1,4 +1,4 @@
-export default function Organizations() {
+export default function Home() {
 
   return(
     <div>
@@ -6,16 +6,16 @@ export default function Organizations() {
         <nav className="breadcrumb" aria-label="breadcrumbs">
           <ul>
             <li><a href="/">Home</a></li>
-            <li className="is-active"><a href="/organizations" aria-current="page">Organizations</a></li>
+            <li className="is-active"><a href="/teams" aria-current="page">Teams</a></li>
           </ul>
         </nav>
       </div>
-      <div className="container">
+      <div className="container is-fluid">
         <h1 className="title">
-          Organizations
+          Home
         </h1>
         <p className="subtitle">
-          Organizations with <strong>Bulma</strong>!
+          Home with <strong>Bulma</strong>!
         </p>
       </div>
     </div>

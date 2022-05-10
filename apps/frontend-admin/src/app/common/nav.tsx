@@ -1,15 +1,15 @@
 import { useSessionContext } from 'supertokens-auth-react/recipe/session';
 import { signOut } from "supertokens-auth-react/recipe/emailpassword";
-import AccountDropDown from "./account"
-import { navigate } from 'hookrouter';
+import AccountDropDown from "./account";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Nav() {
-  const {userId, accessTokenPayload} = useSessionContext();
+  const {accessTokenPayload} = useSessionContext();
 
+  const navigate = useNavigate();
 	async function logoutClicked() {
     await signOut();
     navigate('/auth');
-    window.location.reload();
   }
 
   return(
@@ -24,24 +24,24 @@ export default function Nav() {
 
       <div id="navbar" className="navbar-menu">
         <div className="navbar-start">
-          <a className="navbar-item" href="/">
+          <Link className="navbar-item" to="/">
           <span className="icon">
               <i className="fa fa-home"></i>
             </span>
           <span>{accessTokenPayload.name}</span>
-          </a>
+          </Link>
 
-          <a className="navbar-item" href="/">
+          <Link className="navbar-item" to="/dashboard">
             Dashboard
-          </a>
+          </Link>
 
-          <a className="navbar-item" href="/organizations">
+          <Link className="navbar-item" to="/organizations">
             Organizations
-          </a>
+          </Link>
 
-          <a className="navbar-item" href="/teams">
+          <Link className="navbar-item" to="/teams">
             Teams
-          </a>
+          </Link>
         </div>
 
         <div className="navbar-end">

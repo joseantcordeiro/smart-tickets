@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@smart-tickets/api-utils": ["libs/api-utils/src/index.ts"]
+      "@smart-tickets/api-utils": ["libs/api-utils/src/index.ts"],
+      "@smart-tickets/router": ["libs/router/src/index.js"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,0 +1,82 @@
+{
+  "sourceRoot": "apps/frontend-tests/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/frontend-tests",
+        "index": "apps/frontend-tests/src/index.html",
+        "baseHref": "/",
+        "main": "apps/frontend-tests/src/main.tsx",
+        "polyfills": "apps/frontend-tests/src/polyfills.ts",
+        "tsConfig": "apps/frontend-tests/tsconfig.app.json",
+        "assets": [
+          "apps/frontend-tests/src/favicon.ico",
+          "apps/frontend-tests/src/assets"
+        ],
+        "styles": ["apps/frontend-tests/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/frontend-tests/src/environments/environment.ts",
+              "with": "apps/frontend-tests/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "frontend-tests:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "frontend-tests:build:development"
+        },
+        "production": {
+          "buildTarget": "frontend-tests:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/frontend-tests/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/frontend-tests"],
+      "options": {
+        "jestConfig": "apps/frontend-tests/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

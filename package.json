@@ -47,11 +47,11 @@
     "typescript": "~4.6.2"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.2",
     "@fastify/cors": "^7.0.0",
     "@fastify/formbody": "^6.0.0",
     "@neo4j/graphql": "^3.2.0",
     "@neo4j/graphql-plugin-auth": "^1.0.0",
-    "@types/hookrouter": "^2.2.5",
     "apollo-server-cache-redis": "^3.3.1",
     "apollo-server-core": "^3.7.0",
     "apollo-server-express": "^3.7.0",
@@ -61,19 +61,21 @@
     "dotenv": "^16.0.0",
     "express": "^4.18.1",
     "fastify": "^3.29.0",
-    "graphql": "^16.4.0",
+    "formik": "^2.2.9",
+    "graphql": "^16.5.0",
     "graphql-upload": "^13.0.0",
     "graphql-ws": "^5.8.1",
-    "hookrouter": "^1.2.5",
     "ioredis": "^5.0.4",
     "neo4j-driver": "^4.4.5",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-router-dom": "^6.3.0",
     "regenerator-runtime": "0.13.7",
     "supertokens-auth-react": "^0.20.4",
     "supertokens-node": "^9.2.0",
     "tslib": "^2.3.0",
     "winston": "^3.7.2",
-    "ws": "^8.6.0"
+    "ws": "^8.6.0",
+    "yup": "^0.32.11"
   }
 }

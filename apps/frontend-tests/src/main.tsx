@@ -3,7 +3,7 @@ import SuperTokens from 'supertokens-auth-react';
 import Session, { SessionAuth } from 'supertokens-auth-react/recipe/session';
 import { BrowserRouter } from 'react-router-dom';
 import EmailPassword from 'supertokens-auth-react/recipe/emailpassword';
-import { getAuthDomain, getWebsiteDomain } from "./app/common/utils"
+import { getAuthDomain, getWebsiteDomain } from "./app/utils"
 import * as ReactDOM from 'react-dom/client';
 import App from './app/app';
 
