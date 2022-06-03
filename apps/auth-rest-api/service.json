@@ -1,0 +1,21 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "auth-rest-api-service"
+  },
+  "spec": {
+    "type": "NodePort",
+    "selector": {
+      "app": "auth-rest-api"
+    },
+    "ports": [
+      {
+        "protocol": "TCP",
+        "port": 80,
+        "targetPort": 4001,
+        "name": "auth-rest-api-service"
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "name": "auth-rest-api"
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": {
+      "matchLabels": {
+        "app": "auth-rest-api"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "auth-rest-api"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "auth-rest-api",
+            "image": "auth-rest-api:latest",
+            "imagePullPolicy": "Never",
+            "ports": [
+              {
+                "containerPort": 4001
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
