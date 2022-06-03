@@ -26,6 +26,7 @@ query Me {
     name
     email
     picture
+    language
   }
   getLanguages {
     alpha_2
@@ -47,7 +48,7 @@ export default function Profile() {
     </div>
   );
 
-  const initialValues: FormValues = { name: data.me.name, defaultLanguage: 'en' };
+  const initialValues: FormValues = { name: data.me.name, defaultLanguage: data.me.language };
 
   return (
     <div className="container">

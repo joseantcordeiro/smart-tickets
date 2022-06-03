@@ -10,11 +10,35 @@ import { graphqlUploadExpress } from "graphql-upload";
 import { Neo4jGraphQL } from "@neo4j/graphql";
 import neo4j from "neo4j-driver";
 import { Neo4jGraphQLAuthJWKSPlugin } from "@neo4j/graphql-plugin-auth";
+import supertokens from "supertokens-node";
+import Session from "supertokens-node/recipe/session";
+import EmailPassword from "supertokens-node/recipe/emailpassword";
+import { verifySession } from "supertokens-node/recipe/session/framework/express";
+import { SessionRequest } from "supertokens-node/framework/express";
 import { typeDefs } from './typesDef';
 import { resolvers } from './resolvers';
-import env = require("dotenv");
 import { GraphqlLoggerPlugin } from './plugins/GraphqlLoggerPlugin';
+import env = require("dotenv");
 env.config();
+
+supertokens.init({
+  framework: "express",
+  supertokens: {
+    connectionURI: String(process.env.AUTH_URI),
+    apiKey: process.env.AUTH_API_KEY,
+  },
+  appInfo: {
+      appName: String(process.env.AUTH_APP_NAME),
+      apiDomain: String(process.env.AUTH_API_DOMAIN),
+      websiteDomain: String(process.env.AUTH_WEBSITE_DOMAIN),
+      // apiBasePath: "/auth",
+      // websiteBasePath: "/auth",
+  },
+  recipeList: [
+      EmailPassword.init(), // initializes signin / sign up features
+      Session.init() // initializes session features
+  ]
+});
 
 export const driver = neo4j.driver(
   String(process.env.NEO4J_URI),
@@ -53,23 +77,13 @@ async function startApolloServer() {
 
   const server = new ApolloServer({
 		schema,
-    context: ({ req }) => ({ req, driver }),
-    /**context: async req => {
-      const { res } = req;
-      const session = await Session.getSession(req, res)
-      console.log(session);
-      if (session === undefined) {
-        throw Error("Should never come here")
-      }
-      const jwt = session.getAccessTokenPayload()["jwt"];
-      JsonWebToken.verify(jwt, jwtCertificate(), function (err, decoded) {
-        const token = decoded as JwtPayload;
-        console.log(token);
-        return {
-          jwt: token,
-        };
-      });
-    },*/
+    context: ({ req, res }) => ({ req, res, driver }),
+    /** context: async (req: SessionRequest) => {
+      return {
+        jwt: req.session?.getAccessTokenPayload()["jwt"],
+        driver
+      };
+    }, */
     cache: new BaseRedisCache({
       client: new Redis({
         host: String(process.env.CACHE_HOST),
@@ -93,6 +107,11 @@ async function startApolloServer() {
       ApolloServerPluginInlineTrace,
 		],
     csrfPrevention: true,
+    /**dataSources: () => {
+      return {
+        gethAPI: new gethAPI(),
+      };
+    },*/
 	});
 
   // More required logic for integrating with Express
@@ -104,6 +123,15 @@ async function startApolloServer() {
     // server root. However, *other* Apollo Server packages host it at
     // /graphql. Optionally provide this to match apollo-server.
     path: '/graphql',
+  });
+
+  app.get("/TokenPayload", verifySession(), async (req: SessionRequest, res) => {
+
+    // The key "role" is used here since we used that
+    // while setting the access token payload
+    res.json({ token: req.session?.getAccessTokenPayload() })
+
+    //....
   });
 
   // Modified server startup

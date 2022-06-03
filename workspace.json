@@ -5,6 +5,7 @@
     "@smart-tickets/router": "libs/router",
     "auth-rest-api": "apps/auth-rest-api",
     "core-graphql-api": "apps/core-graphql-api",
+    "firefly": "libs/firefly",
     "frontend-admin": "apps/frontend-admin",
     "frontend-admin-e2e": "apps/frontend-admin-e2e",
     "frontend-tests": "apps/frontend-tests",

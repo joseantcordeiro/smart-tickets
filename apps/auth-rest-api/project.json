@@ -45,7 +45,14 @@
         "jestConfig": "apps/auth-rest-api/jest.config.ts",
         "passWithNoTests": true
       }
-    }
-  },
-  "tags": []
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "push": false,
+        "tags": ["smart-tickets/auth-api:latest", "smart-tickets/auth-api:v1"]
+      }
+    },
+    "tags": ["auth"]
+  }
 }

@@ -1,0 +1,28 @@
+{
+  "$id": "https://joseantcordeiro.hopto.org/schemas/account.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Account",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Account name."
+    },
+    "did": {
+      "type": "string",
+      "description": "Identity."
+    },
+    "namespace": {
+      "type": "string",
+      "description": "Node namespace"
+    },
+    "address": {
+      "type": "string",
+      "description": "Ethereum address."
+    }
+  }
+}

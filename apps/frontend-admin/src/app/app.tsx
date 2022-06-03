@@ -23,6 +23,7 @@ function App() {
     cache: new InMemoryCache(),
     headers: {
       Authorization: `Bearer ${accessTokenPayload?.jwt}`,
+      Cookie: `${accessTokenPayload}`,
       "Content-Type": "application/json",
     },
     defaultOptions,

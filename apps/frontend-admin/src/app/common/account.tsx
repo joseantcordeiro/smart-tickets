@@ -12,6 +12,7 @@ export default function AccountDropDown(props: IProps) {
 	const state = {
 		items: [
 			{ name: "Profile", id: "profile", active: "navbar-item", href: "/account/profile"},
+      { name: "Accounts", id: "accounts", active: "navbar-item", href: "/account/accounts"},
 			{ name: "Settings", id: "settings", active: "navbar-item", href: "/account/settings"},
 		]
 	}

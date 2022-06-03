@@ -45,10 +45,11 @@ supertokens.init({
                         const session = driver.session();
                         const res = await session.readTransaction(tx =>
                           tx.run(
-                            `MATCH (p:Person { id: $userId })
+                            `MATCH (p:Person { id: $userId })-[:HAS_DEFAULT_LANGUAGE]->(l:Language)
                              MATCH (p)-[:HAS_METADATA]->(r:Metadata { key: 'DEFAULT_ORGANIZATION' })
                              RETURN p {
                                .*,
+                               language: l.alpha_2,
                                organization: r.value
                              } AS person`,
                             { userId }
@@ -65,6 +66,7 @@ supertokens.init({
                               name: user.name,
                               email: user.email,
                               picture: user.picture,
+                              language: user.language,
                               organization: user.organization
                           };
                             // This is stored in the db against the sessionHandle for this session
@@ -74,6 +76,7 @@ supertokens.init({
                               name: user.name,
                               email: user.email,
                               picture: user.picture,
+                              language: user.language,
                               organization: user.organization
                           };
                         }

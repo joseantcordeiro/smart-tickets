@@ -16,7 +16,18 @@ SuperTokens.init({
       websiteBasePath: "/auth",
   },
   recipeList: [
-      EmailPassword.init(),
+      EmailPassword.init({
+        getRedirectionURL: async (context) => {
+            if (context.action === "SUCCESS") {
+                if (context.redirectToPath !== undefined) {
+                    // we are navigating back to where the user was before they authenticated
+                    return context.redirectToPath;
+                }
+                return "/dashboard";
+            }
+            return undefined;
+        }
+      }),
       Session.init()
   ]
 });

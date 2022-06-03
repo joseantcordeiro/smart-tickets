@@ -1,0 +1,36 @@
+{
+  "$id": "https://joseantcordeiro.hopto.org/schemas/ticket.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ticket",
+  "type": "object",
+  "properties": {
+    "from": {
+      "type": "string",
+      "description": "The source account for the transfer."
+    },
+    "key": {
+      "type": "string",
+      "description": "The blockchain signing key for the transfer."
+    },
+    "localId": {
+      "type": "string",
+      "description": "The UUID of this token transfer."
+    },
+    "namespace": {
+      "type": "string",
+      "description": "The namespace for the transfer."
+    },
+    "pool": {
+      "type": "string",
+      "description": "The UUID the token pool this transfer applies to."
+    },
+    "to": {
+      "type": "string",
+      "description": "The target account for the transfer."
+    },
+    "tokenIndex": {
+      "type": "string",
+      "description": "The index of the token within the pool that this transfer applies to."
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "sourceRoot": "libs/firefly/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/firefly",
+        "main": "libs/firefly/src/index.ts",
+        "tsConfig": "libs/firefly/tsconfig.lib.json",
+        "assets": ["libs/firefly/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/firefly/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/firefly"],
+      "options": {
+        "jestConfig": "libs/firefly/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

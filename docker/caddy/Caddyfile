@@ -1,0 +1,8 @@
+joseantcordeiro.hopto.org {
+  root * /srv
+  file_server
+  tls /root/certs/joseantcordeiro_hopto_org.pem /root/certs/joseantcordeiro_hopto_org.key
+  redir /portainer /portainer/
+  reverse_proxy /portainer/* portainer:9000
+}
+

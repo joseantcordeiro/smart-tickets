@@ -13,9 +13,11 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
       "@smart-tickets/api-utils": ["libs/api-utils/src/index.ts"],
+      "@smart-tickets/firefly": ["libs/firefly/src/index.ts"],
       "@smart-tickets/router": ["libs/router/src/index.js"]
     }
   },

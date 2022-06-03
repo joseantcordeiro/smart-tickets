@@ -9,8 +9,13 @@ import RequireAuth from "./requireauth";
 import Home from "../components/home";
 import Dashboard from "../components/dashboard";
 import Organizations from "../components/organizations";
+import CreateOrganization from "../components/organizations/create";
+import Channels from "../components/channels";
+import CreateChannel from "../components/channels/create";
 import Teams from "../components/teams";
+import Groups from "../components/groups";
 import Profile from "../components/account/profile";
+import Accounts from "../components/account/accounts";
 
 function WithNav() {
   return (
@@ -63,6 +68,30 @@ export default function AppRoutes() {
                     }
                 />
                 <Route
+                    path="/organizations/create"
+                    element={
+                        <WithSession>
+                          <CreateOrganization />
+                        </WithSession>
+                    }
+                />
+                <Route
+                    path="/channels"
+                    element={
+                        <WithSession>
+                          <Channels />
+                        </WithSession>
+                    }
+                />
+                <Route
+                    path="/channels/create"
+                    element={
+                        <WithSession>
+                          <CreateChannel />
+                        </WithSession>
+                    }
+                />
+                <Route
                     path="/teams"
                     element={
                         <WithSession>
@@ -71,10 +100,26 @@ export default function AppRoutes() {
                     }
                 />
                 <Route
+                    path="/groups"
+                    element={
+                        <WithSession>
+                          <Groups />
+                        </WithSession>
+                    }
+                />
+                <Route
                     path="/account/profile"
                     element={
                         <WithSession>
                           <Profile />
+                        </WithSession>
+                    }
+                />
+                <Route
+                    path="/account/accounts"
+                    element={
+                        <WithSession>
+                          <Accounts />
                         </WithSession>
                     }
                 />

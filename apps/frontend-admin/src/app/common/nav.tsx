@@ -28,7 +28,6 @@ export default function Nav() {
           <span className="icon">
               <i className="fa fa-home"></i>
             </span>
-          <span>{accessTokenPayload.name}</span>
           </Link>
 
           <Link className="navbar-item" to="/dashboard">
@@ -41,6 +40,18 @@ export default function Nav() {
 
           <Link className="navbar-item" to="/teams">
             Teams
+          </Link>
+
+          <Link className="navbar-item" to="/channels">
+            Channels
+          </Link>
+
+          <Link className="navbar-item" to="/groups">
+            Groups
+          </Link>
+
+          <Link className="navbar-item" to="/events">
+            Events
           </Link>
         </div>
 
